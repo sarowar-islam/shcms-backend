@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -26,6 +27,14 @@ public class UserService {
 
     public Optional<User> findByUserId(String userId) {
         return userRepository.findByUserId(userId);
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    public void deleteByUserId(String userId) {
+        userRepository.findByUserId(userId).ifPresent(userRepository::delete);
     }
 
     public User saveUser(User user) {
