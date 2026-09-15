@@ -1,0 +1,24 @@
+databases:
+  - name: shcms-postgres
+    databaseName: neondb
+    user: neondb_owner
+    plan: free
+
+services:
+  - type: web
+    name: shcms-backend
+    runtime: docker
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: shcms-postgres
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SPRING_PROFILES_ACTIVE
+        value: production
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -jar target/shcms.app-0.0.1-SNAPSHOT.jar
+    healthCheckPath: /api/health
+    autoDeploy: true
