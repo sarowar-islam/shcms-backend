@@ -73,3 +73,8 @@ Hibernate:
 2026-09-15T14:15:42.678+06:00  INFO 36634 --- [shcms.app] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2026-09-15T14:15:42.679+06:00  INFO 36634 --- [shcms.app] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2026-09-15T14:15:42.680+06:00  INFO 36634 --- [shcms.app] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-09-15T14:44:30.380+06:00  INFO 36634 --- [shcms.app] [ionShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-15T14:44:30.394+06:00  INFO 36634 --- [shcms.app] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-09-15T14:44:30.430+06:00  INFO 36634 --- [shcms.app] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-15T14:44:30.450+06:00  INFO 36634 --- [shcms.app] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-15T14:44:31.083+06:00  INFO 36634 --- [shcms.app] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

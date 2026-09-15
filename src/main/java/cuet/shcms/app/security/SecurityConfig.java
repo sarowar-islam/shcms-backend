@@ -53,20 +53,12 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of(
-            "http://localhost:5173",
-            "http://localhost:3000",
-            "http://localhost:8443",
-            "http://localhost:8081",
-            "https://cuet-shcms.netlify.app",
-            "https://*.netlify.app",
-            "https://*.vercel.app",
-            "https://*.render.com"
-        ));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With", "Accept", "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"));
-        configuration.setExposedHeaders(List.of("Authorization"));
-        configuration.setAllowCredentials(true);
+
+        // Allow everything for course project - no restrictions
+        configuration.addAllowedOriginPattern("*");
+        configuration.addAllowedMethod("*");
+        configuration.addAllowedHeader("*");
+        configuration.setAllowCredentials(false);
         configuration.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
