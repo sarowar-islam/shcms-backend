@@ -31,9 +31,7 @@ public class DataSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if (userRepository.count() == 0) {
-            seedUsers();
-        }
+        seedUsers();
         if (complaintRepository.count() == 0) {
             seedComplaints();
         }
@@ -61,8 +59,15 @@ public class DataSeeder implements CommandLineRunner {
                 "admin@university.edu", null, "Hall Administration", "+91 98001 23456", LocalDate.of(2015, 7, 1))
         );
 
-        userRepository.saveAll(users);
-        System.out.println("Users seeded successfully!");
+        List<User> missingUsers = users.stream()
+            .filter(user -> userRepository.findByUserId(user.getUserId()).isEmpty()
+                && userRepository.findByUsername(user.getUsername()).isEmpty()
+                && userRepository.findByEmail(user.getEmail()).isEmpty())
+            .toList();
+        if (!missingUsers.isEmpty()) {
+            userRepository.saveAll(missingUsers);
+            System.out.println("Missing demo users seeded successfully!");
+        }
     }
 
     private User createUser(String userId, String username, String password, User.Role role, String name,
