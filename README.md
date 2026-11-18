@@ -31,6 +31,7 @@ Spring Boot backend for the Student Hostel Complaint Management System (CUET-SHC
 ### Configuration
 1. **Application Configuration**: Edit `src/main/resources/application.properties`
 2. **Environment Variables**: See `.env` file for database credentials
+3. **Gemini chatbot**: Set `GEMINI_API_KEY` in the backend environment. The key is only used by the backend and must not be added to frontend variables. Optionally set `GEMINI_MODEL` to select a Gemini model; the default is `gemini-2.5-flash`.
 
 ### Running the Application
 
@@ -66,6 +67,9 @@ docker run -p 8080:8080 shcms-backend
 - `PATCH /api/complaints/{id}/assign` - Assign complaint to staff
 - `POST /api/complaints/{id}/updates` - Add update to complaint
 - `DELETE /api/complaints/{id}` - Delete complaint
+
+### Chatbot
+- `POST /api/chatbot/chat` - Send conversation history and receive an assistant reply with an optional complaint suggestion
 
 ### System Configuration
 - `GET /api/config` - Get system configuration
@@ -191,6 +195,7 @@ curl http://localhost:8080/api/health
 Required:
 - `DATABASE_URL`: PostgreSQL connection string
 - `JWT_SECRET`: JWT signing key (production only)
+- `GEMINI_API_KEY`: Gemini API key for chatbot responses
 
 ### Production Settings
 1. Change `spring.jpa.hibernate.ddl-auto` to `validate`

@@ -26,6 +26,7 @@ services:
       SPRING_DATASOURCE_USERNAME: neondb_owner
       SPRING_DATASOURCE_PASSWORD: npg_Oo2IycDphtm8
       JWT_SECRET: ${JWT_SECRET:-your-secret-key-change-this-in-production-min-256-bits}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
     depends_on:
       postgres:
         condition: service_healthy
